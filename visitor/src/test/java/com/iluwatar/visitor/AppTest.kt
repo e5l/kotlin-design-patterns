@@ -22,13 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.visitor;
+package com.iluwatar.visitor
 
-/** SoldierVisitorTest */
-class SoldierVisitorTest extends VisitorTest<SoldierVisitor> {
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.function.Executable
 
-  /** Create a new test instance for the given visitor. */
-  public SoldierVisitorTest() {
-    super(new SoldierVisitor(), null, null, ("Greetings soldier"));
-  }
+/** Application test.  */
+internal class AppTest {
+    @Test
+    fun shouldExecuteWithoutException() {
+        Assertions.assertDoesNotThrow(Executable { App.main(arrayOf<String?>()) })
+    }
 }

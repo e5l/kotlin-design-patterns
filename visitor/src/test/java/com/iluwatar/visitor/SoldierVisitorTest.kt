@@ -22,17 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.visitor;
+package com.iluwatar.visitor
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-
-import org.junit.jupiter.api.Test;
-
-/** Application test. */
-class AppTest {
-
-  @Test
-  void shouldExecuteWithoutException() {
-    assertDoesNotThrow(() -> App.main(new String[] {}));
-  }
-}
+/** SoldierVisitorTest  */
+internal class SoldierVisitorTest
+/** Create a new test instance for the given visitor.  */
+    : VisitorTest<SoldierVisitor?>(SoldierVisitor(), null, null, ("Greetings soldier"))

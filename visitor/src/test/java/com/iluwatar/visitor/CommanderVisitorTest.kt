@@ -22,13 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.visitor;
+package com.iluwatar.visitor
 
-/** SergeantVisitorTest */
-class SergeantVisitorTest extends VisitorTest<SergeantVisitor> {
-
-  /** Create a new test instance for the given visitor. */
-  public SergeantVisitorTest() {
-    super(new SergeantVisitor(), null, ("Hello sergeant"), null);
-  }
-}
+/** CommanderVisitorTest  */
+internal class CommanderVisitorTest
+/** Create a new test instance for the given visitor.  */
+    : VisitorTest<CommanderVisitor?>(CommanderVisitor(), ("Good to see you commander"), null, null)

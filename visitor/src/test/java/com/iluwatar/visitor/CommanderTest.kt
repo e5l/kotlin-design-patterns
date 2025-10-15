@@ -22,21 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.visitor;
+package com.iluwatar.visitor
 
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.verify;
+import org.mockito.ArgumentMatchers
+import org.mockito.Mockito
+import java.util.function.Function
 
-/** SergeantTest */
-class SergeantTest extends UnitTest<Sergeant> {
-
-  /** Create a new test instance for the given {@link Sergeant}. */
-  public SergeantTest() {
-    super(Sergeant::new);
-  }
-
-  @Override
-  void verifyVisit(Sergeant unit, UnitVisitor mockedVisitor) {
-    verify(mockedVisitor).visit(eq(unit));
-  }
+/** CommanderTest  */
+internal class CommanderTest
+/** Create a new test instance for the given [Commander].  */
+    : UnitTest<Commander?>(Function { children: Array<Unit?>? -> Commander(children) }) {
+    override fun verifyVisit(unit: Commander?, mockedVisitor: UnitVisitor?) {
+        Mockito.verify<UnitVisitor?>(mockedVisitor).visit(ArgumentMatchers.eq<Commander?>(unit))
+    }
 }
