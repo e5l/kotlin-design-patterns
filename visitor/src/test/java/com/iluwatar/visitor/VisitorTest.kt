@@ -28,35 +28,27 @@ import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.AppenderBase
 import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.slf4j.LoggerFactory
-import java.util.*
 
 /**
  * Test case for Visitor Pattern
- * 
- * @param <V> Type of UnitVisitor
-</V> */
-abstract class VisitorTest<V : UnitVisitor?>
-/**
- * Create a new test instance for the given visitor.
- * 
- * @param commanderResponse The expected response when being visited by a commander
- * @param sergeantResponse The expected response when being visited by a sergeant
- * @param soldierResponse The expected response when being visited by a soldier
- */(
-    /** The tested visitor instance.  */
-    private val visitor: V?,
-    /** The expected response when being visited by a commander.  */
+ *
+ * @param V Type of UnitVisitor
+ */
+abstract class VisitorTest<V : UnitVisitor>(
+    /** The tested visitor instance. */
+    private val visitor: V,
+    /** The expected response when being visited by a commander. */
     private val commanderResponse: String?,
-    /** The expected response when being visited by a sergeant.  */
+    /** The expected response when being visited by a sergeant. */
     private val sergeantResponse: String?,
-    /** The expected response when being visited by a soldier.  */
+    /** The expected response when being visited by a soldier. */
     private val soldierResponse: String?
 ) {
-    private var appender: InMemoryAppender? = null
+    private lateinit var appender: InMemoryAppender
 
     @BeforeEach
     fun setUp() {
@@ -65,52 +57,52 @@ abstract class VisitorTest<V : UnitVisitor?>
 
     @AfterEach
     fun tearDown() {
-        appender!!.stop()
+        appender.stop()
     }
 
     @Test
     fun testVisitCommander() {
-        this.visitor!!.visit(Commander())
-        if (this.commanderResponse != null) {
-            Assertions.assertEquals(this.commanderResponse, appender!!.lastMessage)
-            Assertions.assertEquals(1, appender!!.logSize)
+        visitor.visit(Commander())
+        if (commanderResponse != null) {
+            assertEquals(commanderResponse, appender.lastMessage)
+            assertEquals(1, appender.logSize)
         }
     }
 
     @Test
     fun testVisitSergeant() {
-        this.visitor!!.visit(Sergeant())
-        if (this.sergeantResponse != null) {
-            Assertions.assertEquals(this.sergeantResponse, appender!!.lastMessage)
-            Assertions.assertEquals(1, appender!!.logSize)
+        visitor.visit(Sergeant())
+        if (sergeantResponse != null) {
+            assertEquals(sergeantResponse, appender.lastMessage)
+            assertEquals(1, appender.logSize)
         }
     }
 
     @Test
     fun testVisitSoldier() {
-        this.visitor!!.visit(Soldier())
-        if (this.soldierResponse != null) {
-            Assertions.assertEquals(this.soldierResponse, appender!!.lastMessage)
-            Assertions.assertEquals(1, appender!!.logSize)
+        visitor.visit(Soldier())
+        if (soldierResponse != null) {
+            assertEquals(soldierResponse, appender.lastMessage)
+            assertEquals(1, appender.logSize)
         }
     }
 
-    private class InMemoryAppender : AppenderBase<ILoggingEvent?>() {
-        private val log: MutableList<ILoggingEvent?> = LinkedList<ILoggingEvent?>()
+    private class InMemoryAppender : AppenderBase<ILoggingEvent>() {
+        private val log = mutableListOf<ILoggingEvent>()
 
         init {
             (LoggerFactory.getLogger("root") as Logger).addAppender(this)
             start()
         }
 
-        override fun append(eventObject: ILoggingEvent?) {
+        override fun append(eventObject: ILoggingEvent) {
             log.add(eventObject)
         }
 
         val logSize: Int
             get() = log.size
 
-        val lastMessage: String?
-            get() = log.get(log.size - 1)!!.getFormattedMessage()
+        val lastMessage: String
+            get() = log.last().formattedMessage
     }
 }

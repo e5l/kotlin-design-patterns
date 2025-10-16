@@ -24,7 +24,10 @@
  */
 package com.iluwatar.visitor
 
-/** CommanderVisitorTest  */
-internal class CommanderVisitorTest
-/** Create a new test instance for the given visitor.  */
-    : VisitorTest<CommanderVisitor?>(CommanderVisitor(), ("Good to see you commander"), null, null)
+/** CommanderVisitorTest */
+internal class CommanderVisitorTest : VisitorTest<CommanderVisitor>(
+    CommanderVisitor(),
+    "Good to see you commander",
+    null,
+    null
+)

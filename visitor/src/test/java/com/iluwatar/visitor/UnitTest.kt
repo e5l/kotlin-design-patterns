@@ -25,38 +25,29 @@
 package com.iluwatar.visitor
 
 import org.junit.jupiter.api.Test
-import org.mockito.ArgumentMatchers
+import org.mockito.ArgumentMatchers.eq
 import org.mockito.Mockito
-import java.util.*
-import java.util.function.Function
-import java.util.function.IntFunction
 
 /**
  * Test related to Units
- * 
- * @param <U> Type of Unit
-</U> */
-abstract class UnitTest<U : Unit?>
-/**
- * Create a new test instance for the given unit type [U].
- * 
- * @param factory Factory to create new instances of the tested unit
- */(
-    /** Factory to create new instances of the tested unit.  */
-    private val factory: Function<Array<Unit?>?, U?>
+ *
+ * @param U Type of Unit
+ */
+abstract class UnitTest<U : Unit>(
+    /** Factory to create new instances of the tested unit. */
+    private val factory: (Array<Unit>) -> U
 ) {
     @Test
     fun testAccept() {
-        val children = arrayOfNulls<Unit>(5)
-        Arrays.setAll<Unit?>(children, IntFunction { i: Int -> Mockito.mock<Unit?>(Unit::class.java) })
+        val children: Array<Unit> = Array(5) { Mockito.mock(Unit::class.java) }
 
-        val unit = this.factory.apply(children)
-        val visitor = Mockito.mock<UnitVisitor?>(UnitVisitor::class.java)
-        unit!!.accept(visitor)
+        val unit = factory(children)
+        val visitor: UnitVisitor = Mockito.mock(UnitVisitor::class.java)
+
+        unit.accept(visitor)
         verifyVisit(unit, visitor)
 
-        Arrays.stream<Unit?>(children)
-            .forEach { child: Unit? -> Mockito.verify<Unit?>(child).accept(ArgumentMatchers.eq<UnitVisitor?>(visitor)) }
+        children.forEach { child -> Mockito.verify(child).accept(eq(visitor)) }
 
         Mockito.verifyNoMoreInteractions(*children)
         Mockito.verifyNoMoreInteractions(visitor)
@@ -64,9 +55,9 @@ abstract class UnitTest<U : Unit?>
 
     /**
      * Verify if the correct visit method is called on the mock, depending on the tested instance.
-     * 
+     *
      * @param unit The tested unit instance
      * @param mockedVisitor The mocked [UnitVisitor] who should have gotten a visit by the unit
      */
-    abstract fun verifyVisit(unit: U?, mockedVisitor: UnitVisitor?)
+    abstract fun verifyVisit(unit: U, mockedVisitor: UnitVisitor)
 }

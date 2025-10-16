@@ -24,14 +24,13 @@
  */
 package com.iluwatar.visitor
 
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertDoesNotThrow
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.function.Executable
 
-/** Application test.  */
+/** Application test. */
 internal class AppTest {
     @Test
     fun shouldExecuteWithoutException() {
-        Assertions.assertDoesNotThrow(Executable { App.main(arrayOf<String?>()) })
+        assertDoesNotThrow { App.main(emptyArray()) }
     }
 }

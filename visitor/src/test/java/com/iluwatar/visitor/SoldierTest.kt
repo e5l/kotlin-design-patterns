@@ -24,15 +24,12 @@
  */
 package com.iluwatar.visitor
 
-import org.mockito.ArgumentMatchers
 import org.mockito.Mockito
-import java.util.function.Function
+import org.mockito.ArgumentMatchers.eq
 
-/** SoldierTest  */
-internal class SoldierTest
-/** Create a new test instance for the given [Soldier].  */
-    : UnitTest<Soldier?>(Function { children: Array<Unit?>? -> Soldier(children) }) {
-    override fun verifyVisit(unit: Soldier?, mockedVisitor: UnitVisitor?) {
-        Mockito.verify<UnitVisitor?>(mockedVisitor).visit(ArgumentMatchers.eq<Soldier?>(unit))
+/** SoldierTest */
+internal class SoldierTest : UnitTest<Soldier>({ children -> Soldier(*children) }) {
+    override fun verifyVisit(unit: Soldier, mockedVisitor: UnitVisitor) {
+        Mockito.verify(mockedVisitor).visit(eq(unit))
     }
 }

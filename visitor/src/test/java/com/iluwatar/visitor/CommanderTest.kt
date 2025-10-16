@@ -24,15 +24,12 @@
  */
 package com.iluwatar.visitor
 
-import org.mockito.ArgumentMatchers
 import org.mockito.Mockito
-import java.util.function.Function
+import org.mockito.ArgumentMatchers.eq
 
-/** CommanderTest  */
-internal class CommanderTest
-/** Create a new test instance for the given [Commander].  */
-    : UnitTest<Commander?>(Function { children: Array<Unit?>? -> Commander(children) }) {
-    override fun verifyVisit(unit: Commander?, mockedVisitor: UnitVisitor?) {
-        Mockito.verify<UnitVisitor?>(mockedVisitor).visit(ArgumentMatchers.eq<Commander?>(unit))
+/** CommanderTest */
+internal class CommanderTest : UnitTest<Commander>({ children -> Commander(*children) }) {
+    override fun verifyVisit(unit: Commander, mockedVisitor: UnitVisitor) {
+        Mockito.verify(mockedVisitor).visit(eq(unit))
     }
 }
