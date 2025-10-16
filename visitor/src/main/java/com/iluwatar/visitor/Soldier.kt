@@ -22,28 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.visitor;
+package com.iluwatar.visitor
 
-/** Soldier. */
-public class Soldier extends Unit {
+/** Soldier.  */
+class Soldier(vararg children: Unit?) : Unit(*children) {
+    /**
+     * Accept a Visitor.
+     * 
+     * @param visitor UnitVisitor to be accepted
+     */
+    override fun accept(visitor: UnitVisitor) {
+        visitor.visit(this)
+        super.accept(visitor)
+    }
 
-  public Soldier(Unit... children) {
-    super(children);
-  }
-
-  /**
-   * Accept a Visitor.
-   *
-   * @param visitor UnitVisitor to be accepted
-   */
-  @Override
-  public void accept(UnitVisitor visitor) {
-    visitor.visit(this);
-    super.accept(visitor);
-  }
-
-  @Override
-  public String toString() {
-    return "soldier";
-  }
+    override fun toString(): String {
+        return "soldier"
+    }
 }

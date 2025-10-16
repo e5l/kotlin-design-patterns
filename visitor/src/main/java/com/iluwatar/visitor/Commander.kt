@@ -22,28 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.visitor;
+package com.iluwatar.visitor
 
-/** Commander. */
-public class Commander extends Unit {
+/** Commander.  */
+class Commander(vararg children: Unit?) : Unit(*children) {
+    /**
+     * Accept a Visitor.
+     * 
+     * @param visitor UnitVisitor to be accepted
+     */
+    override fun accept(visitor: UnitVisitor) {
+        visitor.visit(this)
+        super.accept(visitor)
+    }
 
-  public Commander(Unit... children) {
-    super(children);
-  }
-
-  /**
-   * Accept a Visitor.
-   *
-   * @param visitor UnitVisitor to be accepted
-   */
-  @Override
-  public void accept(UnitVisitor visitor) {
-    visitor.visit(this);
-    super.accept(visitor);
-  }
-
-  @Override
-  public String toString() {
-    return "commander";
-  }
+    override fun toString(): String {
+        return "commander"
+    }
 }

@@ -22,21 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.visitor;
+package com.iluwatar.visitor
 
-import java.util.Arrays;
+import java.util.*
 
-/** Interface for the nodes in hierarchy. */
-public abstract class Unit {
+/** Interface for the nodes in hierarchy.  */
+abstract class Unit(vararg children: Unit?) {
+    private val children: Array<Unit?>
 
-  private final Unit[] children;
+    init {
+        this.children = children
+    }
 
-  public Unit(Unit... children) {
-    this.children = children;
-  }
-
-  /** Accept visitor. */
-  public void accept(UnitVisitor visitor) {
-    Arrays.stream(children).forEach(child -> child.accept(visitor));
-  }
+    /** Accept visitor.  */
+    open fun accept(visitor: UnitVisitor?) {
+        Arrays.stream<Unit?>(children).forEach { child: Unit? -> child!!.accept(visitor) }
+    }
 }

@@ -22,14 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.visitor;
+package com.iluwatar.visitor
 
-/** Visitor interface. */
-public interface UnitVisitor {
+/** Visitor interface.  */
+interface UnitVisitor {
+    fun visit(soldier: Soldier?)
 
-  void visit(Soldier soldier);
+    fun visit(sergeant: Sergeant?)
 
-  void visit(Sergeant sergeant);
-
-  void visit(Commander commander);
+    fun visit(commander: Commander?)
 }

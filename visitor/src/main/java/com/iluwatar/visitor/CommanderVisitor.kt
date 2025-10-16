@@ -22,41 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.visitor;
+package com.iluwatar.visitor
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.slf4j.Slf4j
 
-/** CommanderVisitor. */
+/** CommanderVisitor.  */
 @Slf4j
-public class CommanderVisitor implements UnitVisitor {
+class CommanderVisitor : UnitVisitor {
+    /**
+     * Soldier Visitor method.
+     * 
+     * @param soldier Soldier to be visited
+     */
+    override fun visit(soldier: Soldier?) {
+        // Do nothing
+    }
 
-  /**
-   * Soldier Visitor method.
-   *
-   * @param soldier Soldier to be visited
-   */
-  @Override
-  public void visit(Soldier soldier) {
-    // Do nothing
-  }
+    /**
+     * Sergeant Visitor method.
+     * 
+     * @param sergeant Sergeant to be visited
+     */
+    override fun visit(sergeant: Sergeant?) {
+        // Do nothing
+    }
 
-  /**
-   * Sergeant Visitor method.
-   *
-   * @param sergeant Sergeant to be visited
-   */
-  @Override
-  public void visit(Sergeant sergeant) {
-    // Do nothing
-  }
-
-  /**
-   * Commander Visitor method.
-   *
-   * @param commander Commander to be visited
-   */
-  @Override
-  public void visit(Commander commander) {
-    LOGGER.info("Good to see you {}", commander);
-  }
+    /**
+     * Commander Visitor method.
+     * 
+     * @param commander Commander to be visited
+     */
+    override fun visit(commander: Commander?) {
+        CommanderVisitor.LOGGER.info("Good to see you {}", commander)
+    }
 }
