@@ -1,3 +1,5 @@
+// ABOUTME: Visitor interface for the Visitor pattern.
+// ABOUTME: Defines visit methods for each concrete unit type in the hierarchy.
 /*
  * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
@@ -26,9 +28,9 @@ package com.iluwatar.visitor
 
 /** Visitor interface.  */
 interface UnitVisitor {
-    fun visit(soldier: Soldier?)
+    fun visit(soldier: Soldier)
 
-    fun visit(sergeant: Sergeant?)
+    fun visit(sergeant: Sergeant)
 
-    fun visit(commander: Commander?)
+    fun visit(commander: Commander)
 }

@@ -24,18 +24,12 @@
  */
 package com.iluwatar.visitor
 
-import java.util.*
-
 /** Interface for the nodes in hierarchy.  */
-abstract class Unit(vararg children: Unit?) {
-    private val children: Array<Unit?>
-
-    init {
-        this.children = children
-    }
+abstract class Unit(vararg children: Unit) {
+    private val children: Array<out Unit> = children
 
     /** Accept visitor.  */
-    open fun accept(visitor: UnitVisitor?) {
-        Arrays.stream<Unit?>(children).forEach { child: Unit? -> child!!.accept(visitor) }
+    open fun accept(visitor: UnitVisitor) {
+        children.forEach { it.accept(visitor) }
     }
 }

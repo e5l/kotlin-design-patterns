@@ -1,3 +1,5 @@
+// ABOUTME: Commander unit in the military hierarchy.
+// ABOUTME: Concrete implementation of Unit that accepts visitors.
 /*
  * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
@@ -25,10 +27,10 @@
 package com.iluwatar.visitor
 
 /** Commander.  */
-class Commander(vararg children: Unit?) : Unit(*children) {
+class Commander(vararg children: Unit) : Unit(*children) {
     /**
      * Accept a Visitor.
-     * 
+     *
      * @param visitor UnitVisitor to be accepted
      */
     override fun accept(visitor: UnitVisitor) {
@@ -36,7 +38,5 @@ class Commander(vararg children: Unit?) : Unit(*children) {
         super.accept(visitor)
     }
 
-    override fun toString(): String {
-        return "commander"
-    }
+    override fun toString() = "commander"
 }

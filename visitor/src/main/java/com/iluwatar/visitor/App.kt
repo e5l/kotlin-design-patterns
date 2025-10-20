@@ -1,3 +1,5 @@
+// ABOUTME: Entry point for the Visitor pattern demonstration.
+// ABOUTME: Creates a military unit hierarchy and applies different visitors to it.
 /*
  * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
@@ -27,26 +29,16 @@ package com.iluwatar.visitor
 /**
  * Visitor pattern defines a mechanism to apply operations on nodes in a hierarchy. New operations
  * can be added without altering the node interface.
- * 
- * 
+ *
  * In this example there is a unit hierarchy beginning from [Commander]. This hierarchy is
- * traversed by visitors. [SoldierVisitor] applies its operation on [Soldier]s, [ ] on [Sergeant]s and so on.
+ * traversed by visitors. [SoldierVisitor] applies its operation on [Soldier]s, [SergeantVisitor] on [Sergeant]s and so on.
  */
-object App {
-    /**
-     * Program entry point.
-     * 
-     * @param args command line args
-     */
-    @JvmStatic
-    fun main(args: Array<String>) {
-        val commander =
-            Commander(
-                Sergeant(Soldier(), Soldier(), Soldier()),
-                Sergeant(Soldier(), Soldier(), Soldier())
-            )
-        commander.accept(SoldierVisitor())
-        commander.accept(SergeantVisitor())
-        commander.accept(CommanderVisitor())
-    }
+fun main() {
+    val commander = Commander(
+        Sergeant(Soldier(), Soldier(), Soldier()),
+        Sergeant(Soldier(), Soldier(), Soldier())
+    )
+    commander.accept(SoldierVisitor())
+    commander.accept(SergeantVisitor())
+    commander.accept(CommanderVisitor())
 }

@@ -1,3 +1,5 @@
+// ABOUTME: Visitor implementation that visits Soldier units.
+// ABOUTME: Logs greetings for soldiers and ignores other unit types.
 /*
  * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
@@ -24,35 +26,38 @@
  */
 package com.iluwatar.visitor
 
-import lombok.extern.slf4j.Slf4j
+import org.slf4j.LoggerFactory
 
 /** SoldierVisitor.  */
-@Slf4j
 class SoldierVisitor : UnitVisitor {
     /**
      * Soldier Visitor method.
-     * 
+     *
      * @param soldier Soldier to be visited
      */
-    override fun visit(soldier: Soldier?) {
-        SoldierVisitor.LOGGER.info("Greetings {}", soldier)
+    override fun visit(soldier: Soldier) {
+        LOGGER.info("Greetings {}", soldier)
     }
 
     /**
      * Sergeant Visitor method.
-     * 
+     *
      * @param sergeant Sergeant to be visited
      */
-    override fun visit(sergeant: Sergeant?) {
+    override fun visit(sergeant: Sergeant) {
         // Do nothing
     }
 
     /**
      * Commander Visitor method.
-     * 
+     *
      * @param commander Commander to be visited
      */
-    override fun visit(commander: Commander?) {
+    override fun visit(commander: Commander) {
         // Do nothing
+    }
+
+    companion object {
+        private val LOGGER = LoggerFactory.getLogger(SoldierVisitor::class.java)
     }
 }
