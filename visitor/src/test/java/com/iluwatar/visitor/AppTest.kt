@@ -31,6 +31,6 @@ import org.junit.jupiter.api.Test
 internal class AppTest {
     @Test
     fun shouldExecuteWithoutException() {
-        assertDoesNotThrow { App.main(emptyArray()) }
+        assertDoesNotThrow { main() }
     }
 }
