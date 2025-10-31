@@ -25,11 +25,10 @@
 package com.iluwatar.visitor
 
 import org.mockito.Mockito
-import org.mockito.ArgumentMatchers.eq
 
 /** SoldierTest */
 internal class SoldierTest : UnitTest<Soldier>({ children -> Soldier(*children) }) {
     override fun verifyVisit(unit: Soldier, mockedVisitor: UnitVisitor) {
-        Mockito.verify(mockedVisitor).visit(eq(unit))
+        Mockito.verify(mockedVisitor).visit(unit)
     }
 }
