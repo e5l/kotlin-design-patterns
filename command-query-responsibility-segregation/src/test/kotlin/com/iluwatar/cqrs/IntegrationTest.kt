@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 // ABOUTME: Integration tests for CQRS pattern verifying CommandService and QueryService interactions.
 // ABOUTME: Tests author/book CRUD operations and query functionality with H2 in-memory database.
 package com.iluwatar.cqrs
