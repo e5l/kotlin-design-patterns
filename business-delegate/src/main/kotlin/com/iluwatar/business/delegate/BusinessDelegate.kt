@@ -30,8 +30,7 @@ package com.iluwatar.business.delegate
 /**
  * BusinessDelegate separates the presentation and business tiers.
  */
-class BusinessDelegate {
-    lateinit var lookupService: BusinessLookup
+class BusinessDelegate(private val lookupService: BusinessLookup) {
 
     fun playbackMovie(movie: String) {
         val videoStreamingService = lookupService.getBusinessService(movie)
